@@ -26,7 +26,22 @@ class BinarySearchTree {
     this.root = this.#buildTree(values);
   }
 
-  insert(value, node = this.root) {}
+  insert(value, node = this.root) {
+    if (this.root === null) {
+      this.root = new Node(value);
+      return true;
+    }
+
+    if (value < node.value) {
+      node.left
+        ? this.insert(value, node.left)
+        : (node.left = new Node(value));
+    } else if (value > node.value) {
+      node.right
+        ? this.insert(value, node.right)
+        : (node.right = new Node(value));
+    }
+  }
 
   delete(value, node = this.root, parent = null) {}
 

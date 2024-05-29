@@ -26,25 +26,6 @@ class BinarySearchTree {
     this.root = this.#buildTree(values);
   }
 
-  insert(value, node = this.root) {
-    if (this.root === null) {
-      this.root = new Node(value);
-      return true;
-    }
-
-    if (value < node.value) {
-      node.left
-        ? this.insert(value, node.left)
-        : (node.left = new Node(value));
-    } else if (value > node.value) {
-      node.right
-        ? this.insert(value, node.right)
-        : (node.right = new Node(value));
-    }
-  }
-
-  delete(value, node = this.root, parent = null) {}
-
   #buildTree(values) {
     const l = values.length;
 
@@ -65,6 +46,38 @@ class BinarySearchTree {
 
     return tree;
   }
+
+  insert(value) {
+    let node = this.root;
+
+    if (!this.root) {
+      this.root = new Node(value);
+      return true;
+    }
+
+    while (node) {
+      if (value < node.value) {
+        if (node.left) {
+          node = node.left;
+        } else {
+          node.left = new Node(value);
+          return true;
+        }
+      } else if (value > node.value) {
+        if (node.right) {
+          node = node.right;
+        } else {
+          node.right = new Node(value);
+          return true;
+        }
+      } else {
+        break;
+      }
+    }
+    return false;
+  }
+
+  delete(value) {}
 
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {

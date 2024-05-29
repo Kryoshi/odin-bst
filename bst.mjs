@@ -18,7 +18,7 @@ class BinarySearchTree {
   root;
 
   constructor(...values) {
-    if (isArray(values[0])) {
+    if (Array.isArray(values[0])) {
       values = [...values[0]];
     }
 

@@ -23,7 +23,7 @@ class BinarySearchTree {
     }
 
     values = mergeSortUnique(values);
-    root = this.#buildTree(values);
+    this.root = this.#buildTree(values);
   }
 
   insert(value) {}

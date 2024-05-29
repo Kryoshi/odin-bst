@@ -1,5 +1,7 @@
 import { mergeSortUnique } from './mergeSortUnique.mjs';
 
+export { BinarySearchTree };
+
 class Node {
   value;
   left;
@@ -12,7 +14,7 @@ class Node {
   }
 }
 
-class Tree {
+class BinarySearchTree {
   root;
 
   constructor(...values) {

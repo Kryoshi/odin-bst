@@ -32,11 +32,16 @@ class BinarySearchTree {
 
   #buildTree(values) {
     const l = values.length;
+
+    if (l === 0) {
+      return null;
+    }
+
     const mid = Math.floor(l / 2);
     const tree = new Node(values[mid]);
 
     if (l <= 3) {
-      tree.left = new Node(values[mid - 1]);
+      tree.left = l > 1 ? new Node(values[mid - 1]) : null;
       tree.right = l > 2 ? new Node(values[mid + 1]) : null;
     } else {
       tree.left = this.#buildTree(values.slice(0, mid));

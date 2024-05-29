@@ -26,9 +26,9 @@ class BinarySearchTree {
     this.root = this.#buildTree(values);
   }
 
-  insert(value) {}
+  insert(value, node = this.root) {}
 
-  delete(value) {}
+  delete(value, node = this.root, parent = null) {}
 
   #buildTree(values) {
     const l = values.length;

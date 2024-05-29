@@ -2,7 +2,7 @@ export { mergeSortUnique };
 
 function mergeSortUnique(array) {
   let l = array.length;
-  if (l === 1) {
+  if (l <= 1) {
     return array;
   }
   const offset = l % 2;

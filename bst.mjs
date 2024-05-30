@@ -77,7 +77,68 @@ class BinarySearchTree {
     return false;
   }
 
-  delete(value) {}
+  delete(value) {
+    let node = this.root;
+    let parent;
+    const d = { left: 0, right: 1 };
+    let dir;
+
+    while (node !== null) {
+      console.log(node.value);
+      if (value < node.value) {
+        console.log('less');
+        parent = node;
+        dir = d.left;
+        node = node.left;
+      } else if (value > node.value) {
+        console.log('more');
+        parent = node;
+        dir = d.right;
+        node = node.right;
+      } else {
+        console.log('match');
+        if (!node.left && !node.right) {
+          console.log('enter');
+          if (parent) {
+            dir === d.left ? (parent.left = null) : (parent.right = null);
+          } else {
+            this.root = null;
+          }
+        } else if (node.right && !node.left) {
+          if (parent) {
+            dir === d.left
+              ? (parent.left = node.right)
+              : (parent.right = node.right);
+          } else {
+            this.root = node.right;
+          }
+        } else if (node.left && !node.right) {
+          if (parent) {
+            dir === d.left
+              ? (parent.left = node.left)
+              : (parent.right = node.left);
+          } else {
+            this.root = node.left;
+          }
+        } else {
+          const temp = this.findLowest(node.right);
+          this.delete(temp);
+          node.value = temp;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  findLowest(node = this.root) {
+    let value = node.value;
+    while (node.left) {
+      value = node.left.value;
+      node = node.left;
+    }
+    return value;
+  }
 
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {

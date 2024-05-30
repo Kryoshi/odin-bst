@@ -219,15 +219,10 @@ class BinarySearchTree {
       return -1;
     }
 
-    let height = 1;
-    let leftHeight = this.#computeHeight(node.left);
-    let rightHeight = this.#computeHeight(node.right);
+    let leftHeight = this.#computeHeight(node.left) + 1;
+    let rightHeight = this.#computeHeight(node.right) + 1;
 
-    leftHeight > rightHeight
-      ? (height += leftHeight)
-      : (height += rightHeight);
-
-    return height;
+    return Math.max(leftHeight, rightHeight);
   }
 
   depth(node) {

@@ -210,6 +210,44 @@ class BinarySearchTree {
     }
   }
 
+  get height() {
+    return this.#computeHeight();
+  }
+
+  #computeHeight(node = this.root) {
+    if (!node) {
+      return -1;
+    }
+
+    let height = 1;
+    let leftHeight = this.#computeHeight(node.left);
+    let rightHeight = this.#computeHeight(node.right);
+
+    leftHeight > rightHeight
+      ? (height += leftHeight)
+      : (height += rightHeight);
+
+    return height;
+  }
+
+  depth(node) {
+    let currentNode = this.root;
+    let depth = 0;
+    while (currentNode) {
+      if (node.value === currentNode.value) {
+        return depth;
+      } else {
+        depth++;
+        if (node.value < currentNode.value) {
+          currentNode = currentNode.left;
+        } else if (node.value > currentNode.value) {
+          currentNode = currentNode.right;
+        }
+      }
+    }
+    return 0;
+  }
+
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;

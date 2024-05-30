@@ -77,8 +77,7 @@ class BinarySearchTree {
     return false;
   }
 
-  delete(value) {
-    let node = this.root;
+  delete(value, node = this.root) {
     let parent;
     const d = { left: 0, right: 1 };
     let dir;
@@ -116,8 +115,8 @@ class BinarySearchTree {
             this.root = node.left;
           }
         } else {
-          const temp = this.findLowest(node.right);
-          this.delete(temp);
+          const temp = this.getLowestValue(node.right);
+          this.delete(temp, node);
           node.value = temp;
         }
         return true;
@@ -126,7 +125,7 @@ class BinarySearchTree {
     return false;
   }
 
-  findLowest(node = this.root) {
+  getLowestValue(node = this.root) {
     let value = node.value;
     while (node.left) {
       value = node.left.value;

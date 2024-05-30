@@ -125,6 +125,22 @@ class BinarySearchTree {
     return false;
   }
 
+  find(value) {
+    let node = this.root;
+
+    while (node) {
+      if (value < node.value) {
+        node = node.left;
+      } else if (value > node.value) {
+        node = node.right;
+      } else {
+        break;
+      }
+    }
+
+    return node;
+  }
+
   getLowestValue(node = this.root) {
     let value = node.value;
     while (node.left) {

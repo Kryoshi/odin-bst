@@ -243,6 +243,26 @@ class BinarySearchTree {
     return 0;
   }
 
+  isBalanced() {
+    if (!this.root) {
+      return true;
+    }
+
+    const leftHeight = this.#computeHeight(this.root.left);
+    const rightHeight = this.#computeHeight(this.root.right);
+
+    return Math.abs(leftHeight - rightHeight) < 1;
+  }
+
+  rebalance() {
+    const values = [];
+    const getValues = (node) => {
+      values.push(node.value);
+    };
+    this.inOrder(getValues);
+    this.root = this.#buildTree(values);
+  }
+
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;

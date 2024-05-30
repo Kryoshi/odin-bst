@@ -150,6 +150,24 @@ class BinarySearchTree {
     return value;
   }
 
+  levelOrder(callback) {
+    const queue = [this.root];
+    const nodes = [];
+    while (queue[0]) {
+      let node = queue.shift();
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+      typeof callback === 'function' ? callback(node) : nodes.push(node);
+    }
+    if (nodes.length) {
+      return nodes;
+    }
+  }
+
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;

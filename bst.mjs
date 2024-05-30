@@ -168,6 +168,48 @@ class BinarySearchTree {
     }
   }
 
+  inOrder(callback, node = this.root, nodes = []) {
+    if (node.left) {
+      this.inOrder(callback, node.left, nodes);
+    }
+    typeof callback === 'function' ? callback(node) : nodes.push(node);
+    if (node.right) {
+      this.inOrder(callback, node.right, nodes);
+    }
+
+    if (nodes.length) {
+      return nodes;
+    }
+  }
+
+  preOrder(callback, node = this.root, nodes = []) {
+    typeof callback === 'function' ? callback(node) : nodes.push(node);
+    if (node.left) {
+      this.preOrder(callback, node.left, nodes);
+    }
+    if (node.right) {
+      this.preOrder(callback, node.right, nodes);
+    }
+
+    if (nodes.length) {
+      return nodes;
+    }
+  }
+
+  postOrder(callback, node = this.root, nodes = []) {
+    if (node.left) {
+      this.postOrder(callback, node.left, nodes);
+    }
+    if (node.right) {
+      this.postOrder(callback, node.right, nodes);
+    }
+    typeof callback === 'function' ? callback(node) : nodes.push(node);
+
+    if (nodes.length) {
+      return nodes;
+    }
+  }
+
   prettyPrint(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;

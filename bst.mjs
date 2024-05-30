@@ -84,21 +84,16 @@ class BinarySearchTree {
     let dir;
 
     while (node !== null) {
-      console.log(node.value);
       if (value < node.value) {
-        console.log('less');
         parent = node;
         dir = d.left;
         node = node.left;
       } else if (value > node.value) {
-        console.log('more');
         parent = node;
         dir = d.right;
         node = node.right;
       } else {
-        console.log('match');
         if (!node.left && !node.right) {
-          console.log('enter');
           if (parent) {
             dir === d.left ? (parent.left = null) : (parent.right = null);
           } else {
